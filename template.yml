@@ -11,7 +11,7 @@ Globals:
     Timeout: 60 # default is 3 seconds the function can run before it is stopped
     Environment:
       Variables:
-        TABLE_NAME: !Ref ProductionsTable
+        TABLE_NAME: !Ref ProductsTable
 
 # ======================== RESOURCES API GATEWAY ======================== #
 Resources:
@@ -28,7 +28,7 @@ Resources:
       CodeUri: src/products/create
       Policies: # follow the principle of least privilege
         - DynamoDBCrudPolicy: # AWS SAM policy
-            TableName: !Ref ProductionsTable
+            TableName: !Ref ProductsTable
         - AWSLambdaBasicExecutionRole
       Events:
         CreateProductApi:
@@ -38,7 +38,24 @@ Resources:
             Path: /products
             Method: post
 
-  ProductionsTable:
+  GetProductFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: 'GetProductFunction'
+      CodeUri: src/products/detail
+      Policies: # follow the principle of least privilege
+        - DynamoDBCrudPolicy: # AWS SAM policy
+            TableName: !Ref ProductsTable
+        - AWSLambdaBasicExecutionRole
+      Events:
+        CreateProductApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref EcomApi
+            Path: /product/{uuid}
+            Method: get
+
+  ProductsTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       TableName: 'products-table'
