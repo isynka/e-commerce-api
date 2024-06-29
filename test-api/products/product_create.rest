@@ -1,0 +1,13 @@
+@hostname = xx0sd05jq1.execute-api.ap-northeast-1.amazonaws.com/Prod
+@host = {{hostname}}
+
+### Success
+POST http://{{host}}/products HTTP/1.1
+content-type: application/json
+
+{
+    "title" : "Banh Keo",
+    "price" : 20000,
+    "description" : "Test description"
+}
+
