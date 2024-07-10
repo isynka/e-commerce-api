@@ -4,6 +4,7 @@
 @uuid= xxxx
 
 ### Create Products
+
 POST http://{{host}}/products HTTP/1.1
 content-type: application/json
 
@@ -14,11 +15,13 @@ content-type: application/json
 }
 
 ### Get Product Details
+
 GET http://{{host}}/product/{{uuid}} HTTP/1.1
 content-type: application/json
 
 
 ### Update Product
+
 PUT http://{{host}}/product/{{uuid}} HTTP/1.1
 content-type: application/json
 
