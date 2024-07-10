@@ -1,6 +1,0 @@
-@hostname = xx0sd05jq1.execute-api.ap-northeast-1.amazonaws.com/Prod
-@host = {{hostname}}
-
-### Success
-GET http://{{host}}/product/db606938-35ba-11ef-bb9b-769c99828625 HTTP/1.1
-content-type: application/json

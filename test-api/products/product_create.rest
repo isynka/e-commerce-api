@@ -1,7 +1,9 @@
-@hostname = xx0sd05jq1.execute-api.ap-northeast-1.amazonaws.com/Prod
+@hostname = xxxxxx.execute-api.ap-northeast-1.amazonaws.com/Prod/
 @host = {{hostname}}
 
-### Success
+@uuid= xxxx
+
+### Create Products
 POST http://{{host}}/products HTTP/1.1
 content-type: application/json
 
@@ -11,3 +13,17 @@ content-type: application/json
     "description" : "Test description"
 }
 
+### Get Product Details
+GET http://{{host}}/product/{{uuid}} HTTP/1.1
+content-type: application/json
+
+
+### Update Product
+PUT http://{{host}}/product/{{uuid}} HTTP/1.1
+content-type: application/json
+
+{
+    "title" : "Banh Keo update",
+    "price" : 25000,
+    "description" : "Test update description"
+}

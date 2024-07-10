@@ -55,6 +55,23 @@ Resources:
             Path: /product/{uuid}
             Method: get
 
+  UpdateProductFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: 'UpdateProductFunction'
+      CodeUri: src/products/edit
+      Policies: # follow the principle of least privilege
+        - DynamoDBCrudPolicy: # AWS SAM policy
+            TableName: !Ref ProductsTable
+        - AWSLambdaBasicExecutionRole
+      Events:
+        CreateProductApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref EcomApi
+            Path: /product/{uuid}
+            Method: put
+
   ProductsTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
